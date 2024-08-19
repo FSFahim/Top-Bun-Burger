@@ -1,23 +1,24 @@
 import DISHES from "../data/dishes";
 import COMMENTS from "../data/comments";
-import dateFormat from "dateformat";
+import { combineReducers } from "redux";
 
-const initState = {
-  dishes: DISHES,
-  comments: COMMENTS,
+const dishReducer = (dishState = DISHES, action) => {
+  return dishState;
 };
 
-export const Reducer = (state = initState, action) => {
+const commentReducer = (commentState = COMMENTS, action) => {
   if (action.type === "ADD_COMMENT") {
     let comment = action.payload;
-    comment.id = state.comments.length;
+    comment.id = commentState.length;
     const now = new Date();
     comment.date = now.toDateString();
-    return {
-      ...state,
-      comments: state.comments.concat(comment),
-    };
+    return commentState.concat(comment);
   } else {
-    return state;
+    return commentState;
   }
 };
+
+export const Reducer = combineReducers({
+  dishes: dishReducer,
+  comments: commentReducer,
+});
