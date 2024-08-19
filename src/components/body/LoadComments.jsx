@@ -5,6 +5,7 @@ const LoadComments = ({ comments }) => {
       <div>
         <h5>{c.author}</h5>
         <p>{c.comment}</p>
+        <p>Rating: {c.rating}</p>
         <p>{dateFormat(c.date, "dddd, mmmm dS, yyyy, h:MM:ss TT")}</p>
       </div>
     );

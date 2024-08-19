@@ -1,5 +1,6 @@
 import DISHES from "../data/dishes";
 import COMMENTS from "../data/comments";
+import dateFormat from "dateformat";
 
 const initState = {
   dishes: DISHES,
@@ -7,5 +8,16 @@ const initState = {
 };
 
 export const Reducer = (state = initState, action) => {
-  return state;
+  if (action.type === "ADD_COMMENT") {
+    let comment = action.payload;
+    comment.id = state.comments.length;
+    const now = new Date();
+    comment.date = now.toDateString();
+    return {
+      ...state,
+      comments: state.comments.concat(comment),
+    };
+  } else {
+    return state;
+  }
 };
