@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import Contact from "./Contact";
 import About from "./About";
@@ -8,15 +8,10 @@ const BodyComponent = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-      <Routes>
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/menu" element={<MenuComponent />} />
-      </Routes>
-      <Routes>
         <Route path="/about" element={<About />} />
-      </Routes>
-      <Routes>
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </div>

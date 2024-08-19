@@ -21,7 +21,7 @@ const NavigationComponent = () => {
         <Collapse isOpen={isNavOpen} navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <Link to="/" className="nav-link">
+              <Link to="/home" className="nav-link">
                 Home
               </Link>
             </NavItem>
