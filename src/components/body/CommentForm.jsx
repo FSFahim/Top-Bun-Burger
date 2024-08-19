@@ -2,6 +2,23 @@ import { Component } from "react";
 import { Button, Form, Input } from "reactstrap";
 import { connect } from "react-redux";
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addComment: (dishId, author, rating, comment) => {
+      dispatch({
+        type: "ADD_COMMENT",
+        payload: {
+          author: author,
+          dishId: dishId,
+          comment: comment,
+          rating: rating,
+        },
+      });
+    },
+    // deleteComment: function();
+  };
+};
+
 class CommentForm extends Component {
   constructor(props) {
     super(props);
@@ -21,15 +38,12 @@ class CommentForm extends Component {
   };
 
   handleSubmit = (event) => {
-    this.props.dispatch({
-      type: "ADD_COMMENT",
-      payload: {
-        author: this.state.author,
-        dishId: this.props.dishId,
-        comment: this.state.comment,
-        rating: this.state.rating,
-      },
-    });
+    this.props.addComment(
+      this.props.dishId,
+      this.state.author,
+      this.state.rating,
+      this.state.comment
+    );
     this.setState({
       author: "",
       rating: "",
@@ -81,4 +95,7 @@ class CommentForm extends Component {
   }
 }
 
-export default connect()(CommentForm);
+export default connect(null, mapDispatchToProps)(CommentForm);
+
+//connect takes, 1st param --> mapStateToProps....here there is no mapStateToProps funch thats why null
+//2nd param --> mapDispatchToProps...to bring all dispatch function together
