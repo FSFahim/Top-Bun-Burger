@@ -1,6 +1,7 @@
 import { Card, CardBody, CardImg, CardText, CardTitle } from "reactstrap";
 import LoadComments from "./LoadComments";
 import CommentForm from "./CommentForm";
+import { baseURL } from "../../redux/baseURL";
 
 const DishDetail = ({ dish, comments, addComment }) => {
   return (
@@ -8,7 +9,7 @@ const DishDetail = ({ dish, comments, addComment }) => {
       <Card className="my-2">
         <CardImg
           alt="Card image cap"
-          src={dish.image}
+          src={baseURL + dish.image}
           style={{
             height: "100%",
           }}
